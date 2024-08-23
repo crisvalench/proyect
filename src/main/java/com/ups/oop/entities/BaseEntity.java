@@ -22,8 +22,8 @@ public class BaseEntity {
     protected Long id;
     protected Date registrationDate;
     protected String address;
-    private String phoneNumber;
-    private String email;
+    protected String phoneNumber;
+    protected String email;
 
     public BaseEntity(Date registrationDate, String address, String phoneNumber, String email) {
         this.registrationDate = registrationDate;

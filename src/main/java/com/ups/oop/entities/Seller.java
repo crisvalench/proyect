@@ -23,6 +23,7 @@ public class Seller extends BaseEntity{
     private String ciSeller;
     private String nameSeller;
     private String lastNameSeller;
+
     @OneToOne
     @JoinColumn(name = "city_id", nullable = true)
     City idCity;

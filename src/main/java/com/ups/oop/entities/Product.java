@@ -21,6 +21,7 @@ public class Product extends BaseEntity{
     private String nameProduct;
     private String detailProduct;
     private double price;
+
     @ManyToOne
     @JoinColumn(name = "supplier_id", nullable = true)
     Supplier idSupplier;
