@@ -8,24 +8,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 
 //Cliente
 public class Client extends BaseEntity{
-    BaseEntity id;
-    BaseEntity registrationDate;
     private String idClient;
     private String ciClient;
     private String nameClient;
     private String lastNameClient;
-    BaseEntity address;
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = true)
     City idCity;
-    BaseEntity phoneNumber;
-    BaseEntity email;
+
+    public Client(){ super();}
+
+    public Client(String idBranch, String nameBranch, String address, String phoneNumber, String email, Date registrationDate) {
+        super(registrationDate, address, phoneNumber, email);
+        this.idClient = idClient;
+        this.ciClient = ciClient;
+        this.nameClient = nameClient;
+        this.lastNameClient = lastNameClient;
+    }
 }
+

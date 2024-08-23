@@ -3,26 +3,29 @@ package com.ups.oop.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 
 //Sucursal
 public class Branch extends BaseEntity{
-    BaseEntity id;
     private String idBranch;
     private String nameBranch;
-    BaseEntity address;
+
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = true)
     City idCity;
-    BaseEntity phoneNumber;
-    BaseEntity email;
+
+    public Branch(){ super();}
+
+    public Branch(String idBranch, String nameBranch, String address, String phoneNumber, String email, Date registrationDate){
+        super(registrationDate,address, phoneNumber, email);
+        this.idBranch = idBranch;
+        this.nameBranch = nameBranch;
+    }
 }

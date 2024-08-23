@@ -24,4 +24,15 @@ public class BaseEntity {
     protected String address;
     private String phoneNumber;
     private String email;
+
+    public BaseEntity(Date registrationDate, String address, String phoneNumber, String email) {
+        this.registrationDate = registrationDate;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
+    public BaseEntity(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 }

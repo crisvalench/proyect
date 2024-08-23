@@ -10,21 +10,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 
 //Proveedor/ra
 public class Supplier extends BaseEntity {
-    BaseEntity id;
-    BaseEntity registrationDate;
+
     private String idSupplier;
-    private int rucSupplier;
-    BaseEntity address;
+    private String rucSupplier;
 
     @ManyToMany
     @JoinColumn(name = "city_id", nullable = true)
@@ -32,8 +30,12 @@ public class Supplier extends BaseEntity {
 
     @OneToMany(mappedBy = "product")
     private List<Product> products = new ArrayList<>();
-            
-    BaseEntity phoneNumber;
-    BaseEntity email;
 
+    public Supplier(){ super();}
+
+    public Supplier(String idSupplier, String rucSupplier, String address, String phoneNumber, String email, Date registrationDate){
+        super(registrationDate,address, phoneNumber, email);
+        this.idSupplier = idSupplier;
+        this.rucSupplier = rucSupplier;
+    }
 }

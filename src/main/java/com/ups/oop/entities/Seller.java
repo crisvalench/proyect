@@ -10,24 +10,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 
 //Vendedor
 public class Seller extends BaseEntity{
-    BaseEntity id;
-    BaseEntity registrationDate;
     private String idSeller;
     private String ciSeller;
     private String nameSeller;
     private String lastNameSeller;
-    BaseEntity address;
     @OneToOne
     @JoinColumn(name = "city_id", nullable = true)
     City idCity;
-    BaseEntity phoneNumber;
-    BaseEntity email;
+
+    public Seller(){ super();}
+
+    public Seller(String idSeller, String ciSeller, String nameSeller, String lastNameSeller,String address, String phoneNumber, String email, Date registrationDate){
+        super(registrationDate,address, phoneNumber, email);
+        this.idSeller = idSeller;
+        this.ciSeller = ciSeller;
+        this.nameSeller = nameSeller;
+        this.lastNameSeller = lastNameSeller;
+    }
 }

@@ -20,7 +20,6 @@ import java.util.List;
 
 //Ciudad
 public class City extends BaseEntity {
-    BaseEntity id;
     private String idCity;
     private String nameCity;
 
