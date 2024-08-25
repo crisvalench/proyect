@@ -52,4 +52,25 @@ public class BranchService {
                 }
         }
     }
+
+    public ResponseEntity getAllBranches(){
+        Iterable<Branch> branchIterable = branchRepository.findAll();
+        List<BranchDTO> branchesList = new ArrayList<>();
+
+        for (Branch b : branchIterable){
+            BranchDTO branch = new BranchDTO(b.getIdBranch(), new Date(b.getRegistrationDate()), b.getNameBranch(),b.getIdCity(),b.getAddress(), b.getPhoneNumber(), b.getEmail());
+            branchesList.add(branch);
+        }
+    if (branchesList.isEmpty(){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Branch List not found");
+        }
+    }
+
+    public ResponseEntity getBranchById(String branchId){
+        Optional<Branch> branchOptional = branchRepository.findByIdBranch(branchId);
+        if(branchOptional.isPresent()){
+            Branch branchFound = branchOptional.get();
+            BranchDTO branch = new BranchDTO();
+        }
+    }
 }
