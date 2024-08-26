@@ -32,7 +32,7 @@ public class BranchService {
         Optional<Branch> branchOptional = branchRepository.findByIdBranch(idBranch);
 
         if(branchOptional.isPresent()){
-            String errorMessage = "Surcusal with id " + idBranch + " already exists.";
+            String errorMessage = "Branch with id " + idBranch + " already exists.";
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }else{
             Optional<City> cityOptional = cityRepository.findByNameCity(branchDTO.getCity());
@@ -67,8 +67,8 @@ public class BranchService {
         return ResponseEntity.status(HttpStatus.OK).body(branchesList);
     }
 
-    public ResponseEntity getBranchById(String branchId){
-        Optional<Branch> branchOptional = branchRepository.findByIdBranch(branchId);
+    public ResponseEntity getBranchById(String idBranch){
+        Optional<Branch> branchOptional = branchRepository.findByIdBranch(idBranch);
         if(branchOptional.isPresent()){
             Branch branchFound = branchOptional.get();
             BranchDTO branch = new BranchDTO(branchFound.getIdBranch(), branchFound.getRegistrationDate().toString(),
@@ -76,7 +76,7 @@ public class BranchService {
             return ResponseEntity.status(HttpStatus.OK).body(branch);
 
         }else{
-            String errorMessage = "Person with id " + branchId + " not found.";
+            String errorMessage = "Person with id " + idBranch + " not found.";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
     }
@@ -96,15 +96,16 @@ public class BranchService {
                 branch.setPhoneNumber(branchDTO.getPhoneNumber());
                 branch.setEmail(branchDTO.getPhoneNumber());
                 branchRepository.save(branch);
-            }else{
+            } else {
                 String errorMessage = "City don't exists.";
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
             }
-        }else{
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Branch with id " + idBranch + " doesn't exits");
         }
     }
-     public ResponseEntity deleteBranchById(String id){
+
+    public ResponseEntity deleteBranchById(String id){
          String message = "Branch with id " + id;
          Optional<Branch> branchOptional = branchRepository.findByIdBranch(id);
           if(branchOptional.isPresent()){
