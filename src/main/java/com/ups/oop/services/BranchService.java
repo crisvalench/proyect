@@ -53,24 +53,66 @@ public class BranchService {
         }
     }
 
-    public ResponseEntity getAllBranches(){
+    public ResponseEntity getAllBranches() {
         Iterable<Branch> branchIterable = branchRepository.findAll();
         List<BranchDTO> branchesList = new ArrayList<>();
 
-        for (Branch b : branchIterable){
-            BranchDTO branch = new BranchDTO(b.getIdBranch(), new Date(b.getRegistrationDate()), b.getNameBranch(),b.getIdCity(),b.getAddress(), b.getPhoneNumber(), b.getEmail());
+        for (Branch b : branchIterable) {
+            BranchDTO branch = new BranchDTO(b.getIdBranch(), b.getRegistrationDate().toString(), b.getNameBranch(), b.getIdCity().getNameCity(), b.getAddress(), b.getPhoneNumber(), b.getEmail());
             branchesList.add(branch);
         }
-    if (branchesList.isEmpty(){
+        if (branchesList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Branch List not found");
         }
+        return ResponseEntity.status(HttpStatus.OK).body(branchesList);
     }
 
     public ResponseEntity getBranchById(String branchId){
         Optional<Branch> branchOptional = branchRepository.findByIdBranch(branchId);
         if(branchOptional.isPresent()){
             Branch branchFound = branchOptional.get();
-            BranchDTO branch = new BranchDTO();
+            BranchDTO branch = new BranchDTO(branchFound.getIdBranch(), branchFound.getRegistrationDate().toString(),
+                    branchFound.getNameBranch(),branchFound.getIdCity().getNameCity(),branchFound.getAddress(),branchFound.getPhoneNumber(),branchFound.getEmail());
+            return ResponseEntity.status(HttpStatus.OK).body(branch);
+
+        }else{
+            String errorMessage = "Person with id " + branchId + " not found.";
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
     }
+
+    public ResponseEntity updateBranch(BranchDTO branchDTO) {
+        String idBranch = branchDTO.getIdBranch();
+        Optional<Branch> branchOptional = branchRepository.findByIdBranch(idBranch);
+        if (branchOptional.isPresent()) {
+            Optional<City> cityOptional = cityRepository.findByNameCity(branchDTO.getCity());
+            if (cityOptional.isPresent()) {
+                Branch branch = branchOptional.get();
+                branch.setIdBranch(idBranch);
+                branch.setRegistrationDate(new Date(branchDTO.getRegistrationDate()));
+                branch.setNameBranch(branchDTO.getNameBranch());
+                branch.setIdCity(cityOptional.get());
+                branch.setAddress(branchDTO.getAddress());
+                branch.setPhoneNumber(branchDTO.getPhoneNumber());
+                branch.setEmail(branchDTO.getPhoneNumber());
+                branchRepository.save(branch);
+            }else{
+                String errorMessage = "City don't exists.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+            }
+        }else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Branch with id " + idBranch + " doesn't exits");
+        }
+    }
+     public ResponseEntity deleteBranchById(String id){
+         String message = "Branch with id " + id;
+         Optional<Branch> branchOptional = branchRepository.findByIdBranch(id);
+          if(branchOptional.isPresent()){
+              branchRepository.delete((branchOptional.get()));
+              return ResponseEntity.status(HttpStatus.OK).body(message + " removed successufuly");
+          }else{
+              return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message + " not found");
+          }
+
+     }
 }
