@@ -23,6 +23,7 @@ public class Supplier extends BaseEntity {
 
     private String idSupplier;
     private String rucSupplier;
+    private String nameSupplier;
 
     @ManyToMany
     @JoinColumn(name = "city_id", nullable = true)

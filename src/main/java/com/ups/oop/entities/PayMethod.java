@@ -21,6 +21,6 @@ public class PayMethod {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String idPayMethod;
-    private String payMethod; //CASH, CREDIT CARD, TRANSFER, DEBIT CARD
+    private String payMethodName; //CASH, CREDIT CARD, TRANSFER, DEBIT CARD
     private String detail;
 }

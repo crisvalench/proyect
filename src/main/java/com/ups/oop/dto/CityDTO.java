@@ -16,8 +16,8 @@ import java.util.List;
 public class CityDTO {
     private String idCity;
     private String nameCity;
-    private List<String> clients;
-    private List<String> branches;
-    private String seller;
-    private List<String> suppliers;
+//    private List<String> clients;
+//    private List<String> branches;
+//    private String seller;
+//    private List<String> suppliers;
 }
