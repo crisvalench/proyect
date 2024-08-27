@@ -16,9 +16,10 @@ import java.util.List;
 public class SupplierDTO {
     private String idSupplier;
     private String rucSupplier;
-    private List<String> cities;
+    private String nameSupplier;
+    //private List<String> cities;
     private String address;
     private String phoneNumber;
     private String email;
-    private List<String> products;
+   // private List<String> products;
 }

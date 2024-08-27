@@ -72,11 +72,12 @@ public class BranchService {
         if(branchOptional.isPresent()){
             Branch branchFound = branchOptional.get();
             BranchDTO branch = new BranchDTO(branchFound.getIdBranch(), branchFound.getRegistrationDate().toString(),
-                    branchFound.getNameBranch(),branchFound.getIdCity().getNameCity(),branchFound.getAddress(),branchFound.getPhoneNumber(),branchFound.getEmail());
+                    branchFound.getNameBranch(),branchFound.getIdCity().getNameCity(),branchFound.getAddress(),
+                    branchFound.getPhoneNumber(),branchFound.getEmail());
             return ResponseEntity.status(HttpStatus.OK).body(branch);
 
         }else{
-            String errorMessage = "Person with id " + idBranch + " not found.";
+            String errorMessage = "Branch with id " + idBranch + " not found.";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
         }
     }
@@ -96,6 +97,7 @@ public class BranchService {
                 branch.setPhoneNumber(branchDTO.getPhoneNumber());
                 branch.setEmail(branchDTO.getPhoneNumber());
                 branchRepository.save(branch);
+                return ResponseEntity.status(HttpStatus.OK).body(branchDTO);
             } else {
                 String errorMessage = "City don't exists.";
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
@@ -114,6 +116,5 @@ public class BranchService {
           }else{
               return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message + " not found");
           }
-
      }
 }

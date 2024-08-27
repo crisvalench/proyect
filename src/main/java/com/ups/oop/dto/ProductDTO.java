@@ -13,8 +13,8 @@ import lombok.ToString;
 @ToString
 public class ProductDTO {
     private String idProduct;
-    private String supplier;
     private String nameProduct;
+    private String supplier;
     private String detailProduct;
     private String price;
 }
