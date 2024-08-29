@@ -31,6 +31,7 @@ public class BootStrapData implements CommandLineRunner {
         this.productRepository = productRepository;
     }
 
+
     @Override
     public void run(String... args) throws Exception {
 

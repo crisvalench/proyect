@@ -18,13 +18,13 @@ public class Branch extends BaseEntity{
     private String nameBranch;
 
     @ManyToOne
-    @JoinColumn(name = "city_id", nullable = true)
-    City idCity;
+    @JoinColumn(name = "city", nullable = true)
+    private City city;
 
     public Branch(){ super();}
 
-    public Branch(String idBranch, String nameBranch, String address, String phoneNumber, String email, Date registrationDate){
-        super(registrationDate,address, phoneNumber, email);
+    public Branch(Long id,String idBranch, String nameBranch, String address, String phoneNumber, String email, Date registrationDate){
+        super(id,registrationDate,address, phoneNumber, email);
         this.idBranch = idBranch;
         this.nameBranch = nameBranch;
     }

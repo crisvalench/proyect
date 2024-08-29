@@ -14,7 +14,8 @@ import java.util.List;
 @Setter
 @ToString
 public class CityDTO {
-    private String idCity;
+    private String cityId;
+    private String registrationDate;
     private String nameCity;
 //    private List<String> clients;
 //    private List<String> branches;

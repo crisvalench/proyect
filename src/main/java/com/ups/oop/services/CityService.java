@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +26,7 @@ public class CityService {
 
     public ResponseEntity createCity(CityDTO cityDTO) {
 
-        String cityId = cityDTO.getIdCity();
+        String cityId = cityDTO.getCityId();
 
         Optional<City> cityOptional = cityRepository.findByCityId(cityId);
 
@@ -37,7 +38,8 @@ public class CityService {
 
         } else {
             City city = new City();
-            city.setIdCity(cityId);
+            city.setCityId(cityId);
+            city.setRegistrationDate(new Date(cityDTO.getRegistrationDate()));
             city.setNameCity(cityDTO.getNameCity());
             cityRepository.save(city);
             return ResponseEntity.status(HttpStatus.OK).body(city);
@@ -51,7 +53,7 @@ public class CityService {
         List<CityDTO> citiesList = new ArrayList<>();
 
         for (City c : cityIterable) {
-            CityDTO city = new CityDTO(c.getIdCity(), c.getNameCity());
+            CityDTO city = new CityDTO(c.getCityId(), c.getRegistrationDate().toString(),c.getNameCity());
             citiesList.add(city);
         }
         if (citiesList.isEmpty()) {
@@ -65,7 +67,7 @@ public class CityService {
 
         if(cityOptional.isPresent()){
             City cityFound = cityOptional.get();
-            CityDTO city = new CityDTO(cityFound.getIdCity(),cityFound.getNameCity());
+            CityDTO city = new CityDTO(cityFound.getCityId(), cityFound.getRegistrationDate().toString(),cityFound.getNameCity());
 
             return ResponseEntity.status(HttpStatus.OK).body(city);
         }else{
@@ -76,14 +78,14 @@ public class CityService {
 
     public ResponseEntity updateCity(CityDTO cityDTO){
 
-        String idCity = cityDTO.getIdCity();
+        String idCity = cityDTO.getCityId();
 
         Optional<City> cityOptional = cityRepository.findByCityId(idCity);
 
         if(cityOptional.isPresent()){
 
             City city = cityOptional.get();
-            city.setIdCity(idCity);
+            city.setCityId(idCity);
             city.setNameCity(cityDTO.getNameCity());
 
             cityRepository.save(city);
