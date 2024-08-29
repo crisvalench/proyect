@@ -30,7 +30,7 @@ public class ProductService {
 
         String productId = productDTO.getIdProduct();
 
-        Optional<Product> productOptional = productRepository.findByProductId(productId);
+        Optional<Product> productOptional = productRepository.findByIdProduct(productId);
 
         if(productOptional.isPresent()){
 
@@ -45,7 +45,7 @@ public class ProductService {
             Product product = new Product();
             product.setIdProduct(productId);
             product.setNameProduct(productDTO.getNameProduct());
-            product.setIdSupplier(supplierOptional.get());
+            product.setSupplier(supplierOptional.get());
             product.setDetailProduct(productDTO.getDetailProduct());
             product.setPrice(Double.parseDouble(productDTO.getPrice()));
 
@@ -69,7 +69,7 @@ public class ProductService {
         for (Product p : productIterable) {
 
             ProductDTO product = new ProductDTO(p.getIdProduct(),p.getNameProduct(),
-                    p.getIdSupplier().getNameSupplier(),p.getDetailProduct(),String.valueOf(p.getPrice()));
+                    p.getSupplier().getNameSupplier(),p.getDetailProduct(),String.valueOf(p.getPrice()));
 
             productList.add(product);
         }
@@ -85,14 +85,14 @@ public class ProductService {
 
     public ResponseEntity getProductById(String idProduct){
 
-        Optional<Product> productOptional = productRepository.findByProductId(idProduct);
+        Optional<Product> productOptional = productRepository.findByIdProduct(idProduct);
 
         if(productOptional.isPresent()){
 
             Product productFound = productOptional.get();
 
             ProductDTO product = new ProductDTO(productFound.getIdProduct(),productFound.getNameProduct(),
-                    productFound.getIdSupplier().getNameSupplier(),productFound.getDetailProduct(),String.valueOf(productFound.getPrice()));
+                    productFound.getSupplier().getNameSupplier(),productFound.getDetailProduct(),String.valueOf(productFound.getPrice()));
 
             return ResponseEntity.status(HttpStatus.OK).body(product);
 
@@ -106,7 +106,7 @@ public class ProductService {
 
         String productId = productDTO.getIdProduct();
 
-        Optional<Product> productOptional = productRepository.findByProductId(productId);
+        Optional<Product> productOptional = productRepository.findByIdProduct(productId);
 
         if(productOptional.isPresent()){
 
@@ -116,7 +116,7 @@ public class ProductService {
                 Product product = new Product();
                 product.setIdProduct(productId);
                 product.setNameProduct(productDTO.getNameProduct());
-                product.setIdSupplier(supplierOptional.get());
+                product.setSupplier(supplierOptional.get());
                 product.setDetailProduct(productDTO.getDetailProduct());
                 product.setPrice(Double.parseDouble(productDTO.getPrice()));
 
@@ -140,7 +140,7 @@ public class ProductService {
 
         String message = "Product with id " + id;
 
-        Optional<Product> productOptional = productRepository.findByProductId(id);
+        Optional<Product> productOptional = productRepository.findByIdProduct(id);
 
         if(productOptional.isPresent()){
 

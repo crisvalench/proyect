@@ -21,14 +21,15 @@ public class Client extends BaseEntity{
     private String ciClient;
     private String nameClient;
     private String lastNameClient;
+
     @ManyToOne
-    @JoinColumn(name = "city_id", nullable = true)
-    City idCity;
+    @JoinColumn(name = "city", nullable = true)
+     private City city;
 
     public Client(){ super();}
 
-    public Client(String idBranch, String nameBranch, String address, String phoneNumber, String email, Date registrationDate) {
-        super(registrationDate, address, phoneNumber, email);
+    public Client(Long id, String idBranch, String nameBranch, String address, String phoneNumber, String email, Date registrationDate) {
+        super(id,registrationDate, address, phoneNumber, email);
         this.idClient = idClient;
         this.ciClient = ciClient;
         this.nameClient = nameClient;

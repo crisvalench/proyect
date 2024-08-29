@@ -25,17 +25,20 @@ public class Supplier extends BaseEntity {
     private String rucSupplier;
     private String nameSupplier;
 
-    @ManyToMany
-    @JoinColumn(name = "city_id", nullable = true)
-    private List<City> supplierCities;
+    //@ManyToMany
+    //@JoinColumn(name = "city_id", nullable = true)
+    //private List<City> supplierCities;
 
-    @OneToMany(mappedBy = "product")
+    @ManyToMany(mappedBy = "suppliers") 
+    private List<City> supplierCities = new ArrayList<>();
+
+    @OneToMany(mappedBy = "supplier")
     private List<Product> products = new ArrayList<>();
 
     public Supplier(){ super();}
 
-    public Supplier(String idSupplier, String rucSupplier, String address, String phoneNumber, String email, Date registrationDate){
-        super(registrationDate,address, phoneNumber, email);
+    public Supplier(Long id,String idSupplier, String rucSupplier, String address, String phoneNumber, String email, Date registrationDate){
+        super(id, registrationDate,address, phoneNumber, email);
         this.idSupplier = idSupplier;
         this.rucSupplier = rucSupplier;
     }

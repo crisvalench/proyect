@@ -7,12 +7,14 @@ import com.ups.oop.repository.CityRepository;
 import com.ups.oop.repository.SellerRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class SellerService {
     private final SellerRepository sellerRepository;
     private final CityRepository cityRepository;
@@ -28,7 +30,7 @@ public class SellerService {
 
         String sellerId = sellerDTO.getIdSeller();
 
-        Optional<Seller> sellerOptional = sellerRepository.findBySellerId(sellerId);
+        Optional<Seller> sellerOptional = sellerRepository.findByIdSeller(sellerId);
 
         if (sellerOptional.isPresent()) {
 
@@ -48,7 +50,7 @@ public class SellerService {
                 seller.setCiSeller((sellerDTO.getCiSeller()));
                 seller.setNameSeller(sellerDTO.getNameSeller());
                 seller.setLastNameSeller(sellerDTO.getLastNameSeller());
-                seller.setIdCity(cityOptional.get());
+                seller.setCity(cityOptional.get());
                 seller.setAddress(sellerDTO.getAddress());
                 seller.setPhoneNumber(sellerDTO.getPhoneNumber());
                 seller.setEmail(sellerDTO.getEmail());
@@ -70,7 +72,7 @@ public class SellerService {
         for (Seller s : sellerIterable) {
 
             SellerDTO seller = new SellerDTO(s.getIdSeller(), s.getRegistrationDate().toString(),
-                    s.getCiSeller(), s.getNameSeller(), s.getLastNameSeller(), s.getIdCity().getNameCity(),
+                    s.getCiSeller(), s.getNameSeller(), s.getLastNameSeller(), s.getCity().getNameCity(),
                     s.getAddress(), s.getPhoneNumber(), s.getEmail());
 
             sellerList.add(seller);
@@ -85,7 +87,7 @@ public class SellerService {
 
     public ResponseEntity getSellerById(String sellerId){
 
-        Optional<Seller> sellerOptional = sellerRepository.findBySellerId(sellerId);
+        Optional<Seller> sellerOptional = sellerRepository.findByIdSeller(sellerId);
 
         if(sellerOptional.isPresent()){
 
@@ -94,7 +96,7 @@ public class SellerService {
             SellerDTO seller = new SellerDTO(
                     sellerFound.getIdSeller(),sellerFound.getRegistrationDate().toString(),
                     sellerFound.getCiSeller(),sellerFound.getNameSeller(),sellerFound.getLastNameSeller(),
-                    sellerFound.getIdCity().getNameCity(),sellerFound.getAddress(),sellerFound.getPhoneNumber(),sellerFound.getEmail());
+                    sellerFound.getCity().getNameCity(),sellerFound.getAddress(),sellerFound.getPhoneNumber(),sellerFound.getEmail());
 
             return ResponseEntity.status(HttpStatus.OK).body(seller);
 
@@ -110,7 +112,7 @@ public class SellerService {
 
         String sellerId = sellerDTO.getIdSeller();
 
-        Optional<Seller> sellerOptional = sellerRepository.findBySellerId(sellerId);
+        Optional<Seller> sellerOptional = sellerRepository.findByIdSeller(sellerId);
 
         if (sellerOptional.isPresent()) {
             Optional<City> cityOptional = cityRepository.findByNameCity(sellerDTO.getCity());
@@ -123,7 +125,7 @@ public class SellerService {
                 seller.setCiSeller((sellerDTO.getCiSeller()));
                 seller.setNameSeller(sellerDTO.getNameSeller());
                 seller.setLastNameSeller(sellerDTO.getLastNameSeller());
-                seller.setIdCity(cityOptional.get());
+                seller.setCity(cityOptional.get());
                 seller.setAddress(sellerDTO.getAddress());
                 seller.setPhoneNumber(sellerDTO.getPhoneNumber());
                 seller.setEmail(sellerDTO.getEmail());
@@ -149,7 +151,7 @@ public class SellerService {
 
         String message = "Seller with id " + id;
 
-        Optional<Seller> sellerOptional = sellerRepository.findBySellerId(id);
+        Optional<Seller> sellerOptional = sellerRepository.findByIdSeller(id);
 
         if(sellerOptional.isPresent()){
 

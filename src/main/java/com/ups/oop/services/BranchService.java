@@ -41,7 +41,7 @@ public class BranchService {
                     branch.setIdBranch(idBranch);
                     branch.setRegistrationDate(new Date(branchDTO.getRegistrationDate()));
                     branch.setNameBranch(branchDTO.getNameBranch());
-                    branch.setIdCity(cityOptional.get());
+                    branch.setCity(cityOptional.get());
                     branch.setAddress(branchDTO.getAddress());
                     branch.setPhoneNumber(branchDTO.getPhoneNumber());
                     branch.setEmail(branchDTO.getPhoneNumber());
@@ -58,7 +58,7 @@ public class BranchService {
         List<BranchDTO> branchesList = new ArrayList<>();
 
         for (Branch b : branchIterable) {
-            BranchDTO branch = new BranchDTO(b.getIdBranch(), b.getRegistrationDate().toString(), b.getNameBranch(), b.getIdCity().getNameCity(), b.getAddress(), b.getPhoneNumber(), b.getEmail());
+            BranchDTO branch = new BranchDTO(b.getIdBranch(), b.getRegistrationDate().toString(), b.getNameBranch(), b.getCity().getNameCity(), b.getAddress(), b.getPhoneNumber(), b.getEmail());
             branchesList.add(branch);
         }
         if (branchesList.isEmpty()) {
@@ -72,7 +72,7 @@ public class BranchService {
         if(branchOptional.isPresent()){
             Branch branchFound = branchOptional.get();
             BranchDTO branch = new BranchDTO(branchFound.getIdBranch(), branchFound.getRegistrationDate().toString(),
-                    branchFound.getNameBranch(),branchFound.getIdCity().getNameCity(),branchFound.getAddress(),
+                    branchFound.getNameBranch(),branchFound.getCity().getNameCity(),branchFound.getAddress(),
                     branchFound.getPhoneNumber(),branchFound.getEmail());
             return ResponseEntity.status(HttpStatus.OK).body(branch);
 
@@ -92,7 +92,7 @@ public class BranchService {
                 branch.setIdBranch(idBranch);
                 branch.setRegistrationDate(new Date(branchDTO.getRegistrationDate()));
                 branch.setNameBranch(branchDTO.getNameBranch());
-                branch.setIdCity(cityOptional.get());
+                branch.setCity(cityOptional.get());
                 branch.setAddress(branchDTO.getAddress());
                 branch.setPhoneNumber(branchDTO.getPhoneNumber());
                 branch.setEmail(branchDTO.getPhoneNumber());

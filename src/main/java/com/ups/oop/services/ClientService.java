@@ -30,7 +30,7 @@ public class ClientService {
 
         String clientId = clientDTO.getIdClient();
 
-        Optional<Client> clientOptional = clientRepository.findByClientId(clientId);
+        Optional<Client> clientOptional = clientRepository.findByIdClient(clientId);
 
         if (clientOptional.isPresent()) {
 
@@ -50,7 +50,7 @@ public class ClientService {
                 client.setCiClient((clientDTO.getCiClient()));
                 client.setNameClient(clientDTO.getNameClient());
                 client.setLastNameClient(clientDTO.getLastNameClient());
-                client.setIdCity(cityOptional.get());
+                client.setCity(cityOptional.get());
                 client.setAddress(clientDTO.getAddress());
                 client.setPhoneNumber(clientDTO.getPhoneNumber());
                 client.setEmail(clientDTO.getEmail());
@@ -75,7 +75,7 @@ public class ClientService {
             for (Client cl : clientIterable) {
 
                 ClientDTO client = new ClientDTO(cl.getIdClient(), cl.getRegistrationDate().toString(),
-                        cl.getCiClient(), cl.getNameClient(), cl.getLastNameClient(), cl.getIdCity().getNameCity(),
+                        cl.getCiClient(), cl.getNameClient(), cl.getLastNameClient(), cl.getCity().getNameCity(),
                         cl.getAddress(), cl.getPhoneNumber(), cl.getEmail());
 
                 clientsList.add(client);
@@ -92,7 +92,7 @@ public class ClientService {
 
     public ResponseEntity getClientById(String clientId){
 
-        Optional<Client> clientOptional = clientRepository.findByClientId(clientId);
+        Optional<Client> clientOptional = clientRepository.findByIdClient(clientId);
 
         if(clientOptional.isPresent()){
 
@@ -101,7 +101,7 @@ public class ClientService {
             ClientDTO client = new ClientDTO(
                     clientFound.getIdClient(),clientFound.getRegistrationDate().toString(),
                     clientFound.getCiClient(),clientFound.getNameClient(),clientFound.getLastNameClient(),
-                    clientFound.getIdCity().getNameCity(),clientFound.getAddress(),clientFound.getPhoneNumber(),clientFound.getEmail());
+                    clientFound.getCity().getNameCity(),clientFound.getAddress(),clientFound.getPhoneNumber(),clientFound.getEmail());
 
             return ResponseEntity.status(HttpStatus.OK).body(client);
 
@@ -117,7 +117,7 @@ public class ClientService {
 
         String clientId = clientDTO.getIdClient();
 
-        Optional<Client> clientOptional = clientRepository.findByClientId(clientId);
+        Optional<Client> clientOptional = clientRepository.findByIdClient(clientId);
 
         if (clientOptional.isPresent()) {
 
@@ -131,7 +131,7 @@ public class ClientService {
                 client.setCiClient((clientDTO.getCiClient()));
                 client.setNameClient(clientDTO.getNameClient());
                 client.setLastNameClient(clientDTO.getLastNameClient());
-                client.setIdCity(cityOptional.get());
+                client.setCity(cityOptional.get());
                 client.setAddress(clientDTO.getAddress());
                 client.setPhoneNumber(clientDTO.getPhoneNumber());
                 client.setEmail(clientDTO.getEmail());
@@ -153,7 +153,7 @@ public class ClientService {
 
         String message = "Client with id " + id;
 
-        Optional<Client> clientOptional = clientRepository.findByClientId(id);
+        Optional<Client> clientOptional = clientRepository.findByIdClient(id);
 
         if(clientOptional.isPresent()){
 

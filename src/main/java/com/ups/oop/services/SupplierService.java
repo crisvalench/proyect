@@ -26,7 +26,7 @@ public class SupplierService {
 
         String supplierId = supplierDTO.getIdSupplier();
 
-        Optional<Supplier> supplierOptional = supplierRepository.findBySupplierId(supplierId);
+        Optional<Supplier> supplierOptional = supplierRepository.findByIdSupplier(supplierId);
 
         if(supplierOptional.isPresent()){
 
@@ -73,7 +73,7 @@ public class SupplierService {
 
     public ResponseEntity getSupplierById(String supplierId){
 
-        Optional<Supplier> supplierOptional = supplierRepository.findBySupplierId(supplierId);
+        Optional<Supplier> supplierOptional = supplierRepository.findByIdSupplier(supplierId);
 
         if(supplierOptional.isPresent()){
 
@@ -97,7 +97,7 @@ public class SupplierService {
 
         String supplierId = supplierDTO.getIdSupplier();
 
-        Optional<Supplier> supplierOptional = supplierRepository.findBySupplierId(supplierId);
+        Optional<Supplier> supplierOptional = supplierRepository.findByIdSupplier(supplierId);
 
         if(supplierOptional.isPresent()){
 
@@ -126,7 +126,7 @@ public class SupplierService {
 
         String message = "Supplier with id " + id;
 
-        Optional<Supplier> supplierOptional = supplierRepository.findBySupplierId(id);
+        Optional<Supplier> supplierOptional = supplierRepository.findByIdSupplier(id);
 
         if(supplierOptional.isPresent()){
 

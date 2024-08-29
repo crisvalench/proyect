@@ -12,7 +12,6 @@ import java.util.Date;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 
@@ -25,14 +24,16 @@ public class BaseEntity {
     protected String phoneNumber;
     protected String email;
 
-    public BaseEntity(Date registrationDate, String address, String phoneNumber, String email) {
+    public BaseEntity(Long id,Date registrationDate, String address, String phoneNumber, String email) {
+        this.id = id;
         this.registrationDate = registrationDate;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    public BaseEntity(Date registrationDate) {
+    public BaseEntity(Long id,Date registrationDate) {
+        this.id = id;
         this.registrationDate = registrationDate;
     }
 }

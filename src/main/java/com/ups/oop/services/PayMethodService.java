@@ -26,7 +26,7 @@ public class PayMethodService {
 
         String payMethodId = payMethodDTO.getIdPayMethod();
 
-        Optional<PayMethod> payMethodOptional = payMethodRepository.findByPayMethId((payMethodId));
+        Optional<PayMethod> payMethodOptional = payMethodRepository.findByIdPayMethod((payMethodId));
 
         if(payMethodOptional.isPresent()){
 
@@ -67,7 +67,7 @@ public class PayMethodService {
 
     public ResponseEntity getPayMethodsById(String payMethodId) {
 
-        Optional<PayMethod> payMethodOptional = payMethodRepository.findByPayMethId((payMethodId));
+        Optional<PayMethod> payMethodOptional = payMethodRepository.findByIdPayMethod((payMethodId));
 
         if(payMethodOptional.isPresent()){
 
@@ -87,7 +87,7 @@ public class PayMethodService {
 
         String payMethodId = payMethodDTO.getIdPayMethod();
 
-        Optional<PayMethod> payMethodOptional = payMethodRepository.findByPayMethId((payMethodId));
+        Optional<PayMethod> payMethodOptional = payMethodRepository.findByIdPayMethod((payMethodId));
 
         if(payMethodOptional.isPresent()){
 
@@ -113,7 +113,7 @@ public class PayMethodService {
 
         String message = "Pay Method with id " + id;
 
-        Optional<PayMethod> payMethodOptional = payMethodRepository.findByPayMethId(id);
+        Optional<PayMethod> payMethodOptional = payMethodRepository.findByIdPayMethod(id);
 
         if(payMethodOptional.isPresent()){
 

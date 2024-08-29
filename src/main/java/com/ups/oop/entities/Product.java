@@ -24,12 +24,12 @@ public class Product extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "supplier_id", nullable = true)
-    Supplier idSupplier;
+    private Supplier supplier;
 
     public Product(){ super();}
 
-    public Product(String idProduct, Date registrationDate, String nameProduct, String detailProduct, double price ) {
-        super(registrationDate);
+    public Product(Long id,String idProduct, Date registrationDate, String nameProduct, String detailProduct, double price ) {
+        super(id,registrationDate);
         this.idProduct = idProduct;
         this.nameProduct = nameProduct;
         this.detailProduct = detailProduct;
