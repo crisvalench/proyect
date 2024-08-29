@@ -35,6 +35,7 @@ public class SellerService {
             String errorMessage = "Seller with id " + sellerId + " already exists.";
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+
         } else {
 
             Optional<City> cityOptional = cityRepository.findByNameCity(sellerDTO.getCity());

@@ -37,6 +37,7 @@ public class ClientService {
             String errorMessage = "Client with id " + clientId + " already exists.";
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
+
         } else {
 
             Optional<City> cityOptional = cityRepository.findByNameCity(clientDTO.getCity());
@@ -55,6 +56,7 @@ public class ClientService {
                 client.setEmail(clientDTO.getEmail());
 
                 return ResponseEntity.status(HttpStatus.OK).body(client);
+
             } else {
 
                 String errorMessage = "City don't exists.";
@@ -78,6 +80,7 @@ public class ClientService {
 
                 clientsList.add(client);
             }
+
             if (clientsList.isEmpty()) {
 
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Clients List not found");
@@ -85,6 +88,7 @@ public class ClientService {
 
             return ResponseEntity.status(HttpStatus.OK).body(clientsList);
         }
+
 
     public ResponseEntity getClientById(String clientId){
 
