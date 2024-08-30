@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class ProductController {
     private final ProductService productService;
 
@@ -23,7 +25,7 @@ public class ProductController {
         return this.productService.createProduct(productDTO);
     }
 
-    @GetMapping("/get-all-product")
+    @GetMapping("/get-all-products")
     public ResponseEntity getAllProducts(){
         return this.productService.getAllProducts();
     }

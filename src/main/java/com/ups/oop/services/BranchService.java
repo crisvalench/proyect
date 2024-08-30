@@ -58,13 +58,26 @@ public class BranchService {
         List<BranchDTO> branchesList = new ArrayList<>();
 
         for (Branch b : branchIterable) {
-            BranchDTO branch = new BranchDTO(b.getIdBranch(), b.getRegistrationDate().toString(), b.getNameBranch(), b.getCity().getNameCity(), b.getAddress(), b.getPhoneNumber(), b.getEmail());
+            BranchDTO branch = new BranchDTO(b.getIdBranch(), b.getRegistrationDate().toString(), b.getNameBranch(),
+                    b.getCity().getNameCity(), b.getAddress(), b.getPhoneNumber(), b.getEmail());
             branchesList.add(branch);
         }
         if (branchesList.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Branch List not found");
         }
         return ResponseEntity.status(HttpStatus.OK).body(branchesList);
+    }
+
+    //TemplateController
+    public List<BranchDTO> getBranches(){
+        Iterable<Branch> branchIterable = branchRepository.findAll();
+        List<BranchDTO> branchList = new ArrayList<>();
+        for (Branch b : branchIterable) {
+            BranchDTO branch = new BranchDTO(b.getIdBranch(), b.getRegistrationDate().toString(), b.getNameBranch(),
+                    b.getCity().getNameCity(), b.getAddress(), b.getPhoneNumber(), b.getEmail());
+            branchList.add(branch);
+        }
+        return branchList;
     }
 
     public ResponseEntity getBranchById(String idBranch){

@@ -55,6 +55,8 @@ public class ClientService {
                 client.setPhoneNumber(clientDTO.getPhoneNumber());
                 client.setEmail(clientDTO.getEmail());
 
+                clientRepository.save(client);
+
                 return ResponseEntity.status(HttpStatus.OK).body(client);
 
             } else {

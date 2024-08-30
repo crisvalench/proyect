@@ -2,7 +2,9 @@ package com.ups.oop.services;
 
 
 import com.ups.oop.dto.SupplierDTO;
+import com.ups.oop.entities.City;
 import com.ups.oop.entities.Supplier;
+import com.ups.oop.repository.CityRepository;
 import com.ups.oop.repository.SupplierRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,11 @@ import java.util.Optional;
 @Service
 public class SupplierService {
     private final SupplierRepository supplierRepository;
+    private final CityRepository cityRepository;
 
-    public SupplierService(SupplierRepository supplierRepository) {
+    public SupplierService(SupplierRepository supplierRepository, CityRepository cityRepository) {
         this.supplierRepository = supplierRepository;
+        this.cityRepository = cityRepository;
     }
 
     private List<SupplierDTO> supplierList = new ArrayList<>();
@@ -36,18 +40,29 @@ public class SupplierService {
 
         }else{
 
-            Supplier supplier = new Supplier();
-            supplier.setIdSupplier(supplierId);
-            supplier.setRucSupplier(supplierDTO.getRucSupplier());
-            supplier.setNameSupplier(supplierDTO.getNameSupplier());
-            supplier.setAddress(supplierDTO.getAddress());
-            supplier.setPhoneNumber(supplierDTO.getPhoneNumber());
-            supplier.setEmail(supplierDTO.getEmail());
+            Optional<City> cityOptional = cityRepository.findByNameCity(supplierDTO.getCity());
 
-            supplierRepository.save(supplier);
+            if (cityOptional.isPresent()) {
 
-            return ResponseEntity.status(HttpStatus.OK).body(supplier);
+                Supplier supplier = new Supplier();
+                supplier.setIdSupplier(supplierId);
+                supplier.setRucSupplier(supplierDTO.getRucSupplier());
+                supplier.setNameSupplier(supplierDTO.getNameSupplier());
+                supplier.setCity(cityOptional.get());
+                supplier.setAddress(supplierDTO.getAddress());
+                supplier.setPhoneNumber(supplierDTO.getPhoneNumber());
+                supplier.setEmail(supplierDTO.getEmail());
 
+                supplierRepository.save(supplier);
+
+                return ResponseEntity.status(HttpStatus.OK).body(supplier);
+            }else{
+
+                String errorMessage = "City don't exists.";
+
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+
+            }
         }
     }
 
@@ -60,7 +75,7 @@ public class SupplierService {
         for (Supplier sp : supplierIterable) {
 
             SupplierDTO supplier = new SupplierDTO(
-                    sp.getIdSupplier(),sp.getRucSupplier(),sp.getNameSupplier(),sp.getAddress(),
+                    sp.getIdSupplier(),sp.getRucSupplier(),sp.getNameSupplier(),sp.getCity().getNameCity(),sp.getAddress(),
                     sp.getPhoneNumber(),sp.getEmail());
 
             supplierList.add(supplier);
@@ -81,7 +96,7 @@ public class SupplierService {
 
             SupplierDTO supplier = new SupplierDTO(
                     supplierFound.getIdSupplier(), supplierFound.getRucSupplier(),supplierFound.getNameSupplier(),
-                    supplierFound.getAddress(),supplierFound.getPhoneNumber(),supplierFound.getEmail());
+                    supplierFound.getCity().getNameCity(),supplierFound.getAddress(),supplierFound.getPhoneNumber(),supplierFound.getEmail());
 
             return ResponseEntity.status(HttpStatus.OK).body(supplier);
 
@@ -101,17 +116,30 @@ public class SupplierService {
 
         if(supplierOptional.isPresent()){
 
-            Supplier supplier = new Supplier();
-            supplier.setIdSupplier(supplierId);
-            supplier.setRucSupplier(supplierDTO.getRucSupplier());
-            supplier.setNameSupplier(supplierDTO.getNameSupplier());
-            supplier.setAddress(supplierDTO.getAddress());
-            supplier.setPhoneNumber(supplierDTO.getPhoneNumber());
-            supplier.setEmail(supplierDTO.getEmail());
+            Optional<City> cityOptional = cityRepository.findByNameCity(supplierDTO.getCity());
 
-            supplierRepository.save(supplier);
+            if (cityOptional.isPresent()) {
 
-            return ResponseEntity.status(HttpStatus.OK).body(supplier);
+                Supplier supplier = new Supplier();
+                supplier.setIdSupplier(supplierId);
+                supplier.setRucSupplier(supplierDTO.getRucSupplier());
+                supplier.setNameSupplier(supplierDTO.getNameSupplier());
+                supplier.setCity(cityOptional.get());
+                supplier.setAddress(supplierDTO.getAddress());
+                supplier.setPhoneNumber(supplierDTO.getPhoneNumber());
+                supplier.setEmail(supplierDTO.getEmail());
+
+                supplierRepository.save(supplier);
+
+                return ResponseEntity.status(HttpStatus.OK).body(supplier);
+
+            }else{
+
+                String errorMessage = "City don't exists.";
+
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
+
+            }
 
         }else{
 
