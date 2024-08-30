@@ -1,13 +1,13 @@
 package com.ups.oop.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -23,4 +23,7 @@ public class PayMethod {
     private String idPayMethod;
     private String payMethodName; //CASH, CREDIT CARD, TRANSFER, DEBIT CARD
     private String detail;
+
+    @OneToMany(mappedBy = "payMethod")
+    private List<Invoice> invoices = new ArrayList<>();
 }
