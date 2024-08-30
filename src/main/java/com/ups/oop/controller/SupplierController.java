@@ -24,7 +24,7 @@ public class SupplierController {
         return this.supplierService.createSupplier(supplierDTO);
     }
 
-    @GetMapping("/get-all-supplier")
+    @GetMapping("/get-all-suppliers")
     public ResponseEntity getAllSuppliers(){
         return this.supplierService.getAllSuppliers();
     }

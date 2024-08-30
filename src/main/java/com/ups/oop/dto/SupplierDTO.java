@@ -17,7 +17,7 @@ public class SupplierDTO {
     private String idSupplier;
     private String rucSupplier;
     private String nameSupplier;
-    //private List<String> cities;
+    private String city;
     private String address;
     private String phoneNumber;
     private String email;

@@ -29,13 +29,16 @@ public class City extends BaseEntity {
     @OneToMany(mappedBy = "city")
     private List<Seller> sellers = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "city_supplier",
-            joinColumns = @JoinColumn(name = "city_id"),
-            inverseJoinColumns = @JoinColumn(name = "supplier_id")
-    )
+    @OneToMany(mappedBy = "city")
     private List<Supplier> suppliers = new ArrayList<>();
+
+    //@ManyToMany
+    //@JoinTable(
+            //name = "city_supplier",
+            //joinColumns = @JoinColumn(name = "city_id"),
+            //inverseJoinColumns = @JoinColumn(name = "supplier_id")
+    //)
+    //private List<Supplier> suppliers = new ArrayList<>();
 
     public City(){ super();}
 

@@ -3,6 +3,7 @@ package com.ups.oop.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,11 +30,18 @@ public class Supplier extends BaseEntity {
     //@JoinColumn(name = "city_id", nullable = true)
     //private List<City> supplierCities;
 
-    @ManyToMany(mappedBy = "suppliers") 
-    private List<City> supplierCities = new ArrayList<>();
+    //@ManyToMany(mappedBy = "suppliers")
+   // private List<City> supplierCities = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "city")
+    private City city;
 
     @OneToMany(mappedBy = "supplier")
     private List<Product> products = new ArrayList<>();
+
+    @OneToMany(mappedBy = "supplier_id")
+    private List<Invoice> invoices = new ArrayList<>();
 
     public Supplier(){ super();}
 

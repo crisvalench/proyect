@@ -24,7 +24,7 @@ public class PayMethodController {
         return  this.payMethodService.createPayMethod(payMethodDTO);
     }
 
-    @GetMapping("/get-all-pay-method")
+    @GetMapping("/get-all-pay-methods")
     public ResponseEntity getAllPayMethods(){
         return this.payMethodService.getAllPayMethods();
     }
