@@ -29,7 +29,7 @@ public class Client extends BaseEntity{
     @JoinColumn(name = "city", nullable = true)
      private City city;
 
-    @OneToMany(mappedBy = "client_id")
+    @OneToMany(mappedBy = "client")
     private List<Invoice> invoices = new ArrayList<>();
 
     public Client(){ super();}

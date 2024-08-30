@@ -7,19 +7,13 @@ import com.ups.oop.repository.PayMethodRepository;
 import com.ups.oop.repository.ProductRepository;
 import com.ups.oop.repository.SellerRepository;
 import com.ups.oop.repository.SupplierRepository;
-import com.ups.oop.services.BranchService;
-import com.ups.oop.services.CityService;
-import com.ups.oop.services.ClientService;
-import com.ups.oop.services.PayMethodService;
-import com.ups.oop.services.ProductService;
-import com.ups.oop.services.SellerService;
-import com.ups.oop.services.SupplierService;
+import com.ups.oop.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+
+@Controller
 public class TemplateController {
     private final CityService cityService;
     private final PayMethodService payMethodService;
@@ -28,8 +22,10 @@ public class TemplateController {
     private final SellerService sellerService;
     private final SupplierService supplierService;
     private final ProductService productService;
+    private final InvoiceDetailService invoiceDetailService;
+    private final InvoiceService invoiceService;
 
-    public TemplateController(CityService cityService, PayMethodService payMethodService, BranchService branchService, ClientService clientService, SellerService sellerService, SupplierService supplierService, ProductService productService) {
+    public TemplateController(CityService cityService, PayMethodService payMethodService, BranchService branchService, ClientService clientService, SellerService sellerService, SupplierService supplierService, ProductService productService, InvoiceDetailService invoiceDetailService, InvoiceService invoiceService) {
         this.cityService = cityService;
         this.payMethodService = payMethodService;
         this.branchService = branchService;
@@ -37,6 +33,8 @@ public class TemplateController {
         this.sellerService = sellerService;
         this.supplierService = supplierService;
         this.productService = productService;
+        this.invoiceDetailService = invoiceDetailService;
+        this.invoiceService = invoiceService;
     }
 
 
@@ -44,6 +42,12 @@ public class TemplateController {
     public String getBranches(Model model){
         model.addAttribute("branches",  branchService.getBranches());
         return "branch/list";
+    }
+
+    @GetMapping("/invoices-details")
+    public String getInvoiceDetails(Model model){
+        model.addAttribute("invoiceDetails",  invoiceDetailService.getInvoiceDetails());
+        return "invoice-details/list";
     }
 
 }
