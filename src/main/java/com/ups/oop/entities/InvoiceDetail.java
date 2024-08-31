@@ -17,12 +17,12 @@ public class InvoiceDetail {
     private Long id;
     private String invoiceDetailId;
     private String amount;
-    private String subtotal;
-    private String iva;
-    private String total;
+    private double subtotal;
+    private double iva;
+    private double total;
 
     @ManyToOne
-    @JoinColumn(name = "invoice_detail_id", nullable = true)
+    @JoinColumn(name = "invoice_detail", nullable = true)
     private Invoice invoice;
 
     @ManyToOne

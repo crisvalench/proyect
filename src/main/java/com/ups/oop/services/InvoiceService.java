@@ -3,10 +3,11 @@ package com.ups.oop.services;
 import com.ups.oop.dto.InvoiceDTO;
 import com.ups.oop.entities.Invoice;
 import com.ups.oop.repository.InvoiceRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
 
@@ -23,8 +24,9 @@ public class InvoiceService {
             invoiceDTO.setIssueDate(iv.getIssueDate());
             invoiceDTO.setSupplier(iv.getSupplier().getNameSupplier());
             invoiceDTO.setClient(iv.getClient().getNameClient() + " " + iv.getClient().getLastNameClient());
-            invoiceDTO.setSubtotal(iv.getSubtotal().toString());
-            invoiceDTO.setTotal(iv.getTotal().toString());
+            invoiceDTO.setAmountTotal(iv.getAmountTotal().toString());
+            invoiceDTO.setSubTotal(String.valueOf(iv.getSubTotal()));
+            invoiceDTO.setTotal(String.valueOf(iv.getTotal()));
             invoiceDTO.setSeller(iv.getSeller().getNameSeller() + " " + iv.getSeller().getLastNameSeller());
             invoiceDTO.setPayMethod(iv.getPayMethod().getPayMethodName());
             invoiceList.add(invoiceDTO);

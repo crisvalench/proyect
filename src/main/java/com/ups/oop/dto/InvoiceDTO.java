@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -16,7 +15,8 @@ public class InvoiceDTO {
     private String issueDate;
     private String supplier;
     private String client;
-    private String subtotal;
+    private String amountTotal;
+    private String subTotal;
     private String total;
     private String seller;
     private String payMethod;
