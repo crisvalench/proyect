@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +21,9 @@ public class Invoice {
     private Long id;
     private String invoiceId;
     private String issueDate;
-    private Integer subtotal;
-    private Integer total;
+    private Integer amountTotal;
+    private double subTotal;
+    private double total;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id", nullable = true)

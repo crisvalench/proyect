@@ -3,6 +3,8 @@ package com.ups.oop.bootstrap;
 import com.ups.oop.entities.Branch;
 import com.ups.oop.entities.City;
 import com.ups.oop.entities.Client;
+import com.ups.oop.entities.Invoice;
+import com.ups.oop.entities.InvoiceDetail;
 import com.ups.oop.entities.PayMethod;
 import com.ups.oop.entities.Product;
 import com.ups.oop.entities.Seller;
@@ -10,6 +12,8 @@ import com.ups.oop.entities.Supplier;
 import com.ups.oop.repository.BranchRepository;
 import com.ups.oop.repository.CityRepository;
 import com.ups.oop.repository.ClientRepository;
+import com.ups.oop.repository.InvoiceDetailRepository;
+import com.ups.oop.repository.InvoiceRepository;
 import com.ups.oop.repository.PayMethodRepository;
 import com.ups.oop.repository.ProductRepository;
 import com.ups.oop.repository.SellerRepository;
@@ -29,8 +33,10 @@ public class BootStrapData implements CommandLineRunner {
     private final SellerRepository sellerRepository;
     private final SupplierRepository supplierRepository;
     private final ProductRepository productRepository;
+    private final InvoiceRepository invoiceRepository;
+    private final InvoiceDetailRepository invoiceDetailRepository;
 
-    public BootStrapData(CityRepository cityRepository, PayMethodRepository payMethodRepository, BranchRepository branchRepository, ClientRepository clientRepository, SellerRepository sellerRepository, SupplierRepository supplierRepository, ProductRepository productRepository) {
+    public BootStrapData(CityRepository cityRepository, PayMethodRepository payMethodRepository, BranchRepository branchRepository, ClientRepository clientRepository, SellerRepository sellerRepository, SupplierRepository supplierRepository, ProductRepository productRepository, InvoiceRepository invoiceRepository, InvoiceDetailRepository invoiceDetailRepository) {
         this.cityRepository = cityRepository;
         this.payMethodRepository = payMethodRepository;
         this.branchRepository = branchRepository;
@@ -38,6 +44,8 @@ public class BootStrapData implements CommandLineRunner {
         this.sellerRepository = sellerRepository;
         this.supplierRepository = supplierRepository;
         this.productRepository = productRepository;
+        this.invoiceRepository = invoiceRepository;
+        this.invoiceDetailRepository = invoiceDetailRepository;
     }
 
 
@@ -340,7 +348,7 @@ public class BootStrapData implements CommandLineRunner {
         supplier4.setRucSupplier("0012345678004");
         supplier4.setNameSupplier("Clean Solutions Co.");
         supplier4.setAddress("101 Clean St");
-        supplier4.setCity(city4); // Suponiendo que city4 es una instancia de City previamente guardada
+        supplier4.setCity(city4);
         supplier4.setPhoneNumber("555-4444");
         supplier4.setEmail("support@clean-solutions.com");
         supplierRepository.save(supplier4);
@@ -376,7 +384,7 @@ public class BootStrapData implements CommandLineRunner {
         Product product3 = new Product();
         product3.setIdProduct("P003");
         product3.setNameProduct("Producto C");
-        product3.setSupplier(supplier2); // Asigna el ID del proveedor correspondiente
+        product3.setSupplier(supplier2);
         product3.setDetailProduct("Descripción del Producto C");
         product3.setPrice(8.00);
         productRepository.save(product3);
@@ -401,13 +409,101 @@ public class BootStrapData implements CommandLineRunner {
         Product product5 = new Product();
         product5.setIdProduct("P005");
         product5.setNameProduct("Producto E");
-        product5.setSupplier(supplier1); // Asegúrate de tener un proveedor con ID "SUP005"
+        product5.setSupplier(supplier1);
         product5.setDetailProduct("Descripción del Producto E");
         product5.setPrice(10.00);
         productRepository.save(product5);
 
         supplier1.getProducts().add(product5);
         productRepository.save(product5);
+
+    //Invoice
+        Invoice invoice1 = new Invoice();
+        invoice1.setInvoiceId("INV001");
+        invoice1.setIssueDate("2024-08-01");
+        invoice1.setSupplier(supplier1);
+        invoice1.setClient(client1);
+        invoice1.setAmountTotal(4);
+        invoice1.setSubTotal(44.00);
+        invoice1.setTotal(50.6);
+        invoice1.setSeller(seller3);
+        invoice1.setPayMethod(payMethod2);
+        invoiceRepository.save(invoice1);
+
+        supplier1.getInvoices().add(invoice1);
+        client1.getInvoices().add(invoice1);
+        seller3.getInvoices().add(invoice1);
+        payMethod2.getInvoices().add(invoice1);
+        invoiceRepository.save(invoice1);
+
+        Invoice invoice2 = new Invoice();
+        invoice2.setInvoiceId("INV002");
+        invoice2.setIssueDate("2024-08-02");
+        invoice2.setSupplier(supplier3);
+        invoice2.setClient(client3);
+        invoice2.setAmountTotal(5);
+        invoice2.setSubTotal(46.00);
+        invoice2.setTotal(52.90);
+        invoice2.setSeller(seller1);
+        invoice2.setPayMethod(payMethod1);
+        invoiceRepository.save(invoice2);
+
+        supplier3.getInvoices().add(invoice2);
+        client3.getInvoices().add(invoice2);
+        seller1.getInvoices().add(invoice2);
+        payMethod1.getInvoices().add(invoice2);
+        invoiceRepository.save(invoice2);
+
+
+        //Invoice Detail
+        InvoiceDetail invoiceDetail1 = new InvoiceDetail();
+        invoiceDetail1.setInvoiceDetailId("D001");
+        invoiceDetail1.setInvoice(invoice1);
+        invoiceDetail1.setProduct(product1);
+        invoiceDetail1.setAmount("4");
+        invoiceDetail1.setSubtotal(44.00);
+        invoiceDetail1.setIva(6.60);
+        invoiceDetail1.setTotal(50.60);
+        invoiceDetailRepository.save(invoiceDetail1);
+
+        invoice1.getInvoiceDetails().add(invoiceDetail1);
+        product1.getInvoiceDetails().add(invoiceDetail1);
+        invoiceDetailRepository.save(invoiceDetail1);
+
+        InvoiceDetail invoiceDetail2 = new InvoiceDetail();
+        invoiceDetail2.setInvoiceDetailId("D002");
+        invoiceDetail2.setInvoice(invoice2);
+        invoiceDetail2.setProduct(product5);
+        invoiceDetail2.setAmount("3");
+        invoiceDetail2.setSubtotal(30.00);
+        invoiceDetail2.setIva(4.50);
+        invoiceDetail2.setTotal(34.50);
+        invoiceDetailRepository.save(invoiceDetail2);
+
+        invoice2.getInvoiceDetails().add(invoiceDetail2);
+        product5.getInvoiceDetails().add(invoiceDetail2);
+        invoiceDetailRepository.save(invoiceDetail2);
+
+        InvoiceDetail invoiceDetail3 = new InvoiceDetail();
+        invoiceDetail3.setInvoiceDetailId("D003");
+        invoiceDetail3.setInvoice(invoice2);
+        invoiceDetail3.setProduct(product3);
+        invoiceDetail3.setAmount("2");
+        invoiceDetail3.setSubtotal(44.00);
+        invoiceDetail3.setIva(2.40);
+        invoiceDetail3.setTotal(18.40);
+        invoiceDetailRepository.save(invoiceDetail3);
+
+        invoice2.getInvoiceDetails().add(invoiceDetail3);
+        product3.getInvoiceDetails().add(invoiceDetail3);
+        invoiceDetailRepository.save(invoiceDetail3);
+
+
+
+
+
+
+
 
 
 
@@ -441,6 +537,8 @@ public class BootStrapData implements CommandLineRunner {
             System.out.println("Number of Seller: " +sellerRepository.count());
             System.out.println("Number of Supplier: " +supplierRepository.count());
             System.out.println("Number of Product: " +productRepository.count());
+            System.out.println("Number of Invoice: " +invoiceRepository.count());
+            System.out.println("Number of InvoiceDetail: " +invoiceDetailRepository.count());
 
     }
 }

@@ -47,7 +47,13 @@ public class TemplateController {
     @GetMapping("/invoices-details")
     public String getInvoiceDetails(Model model){
         model.addAttribute("invoiceDetails",  invoiceDetailService.getInvoiceDetails());
-        return "invoice-details/list";
+        return "invoiceDetail/list";
+    }
+
+    @GetMapping("/invoices")
+    public String getInvoice(Model model){
+        model.addAttribute("invoice",  invoiceService.getInvoices());
+        return "invoice/list";
     }
 
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>InvoiceDetails List</title>
+    <style>
+        table , th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+
+        th {
+        padding: 10px;
+        width: 150px;
+        }
+
+        tr:first-child {
+        background: #add8e6;
+        }
+
+      tr {
+        background-color: #70f58580;
+      }
+
+      tr:hover{
+        box-shadow: 0px 2px 0px rgba(0,0,0,0.5);
+        cursor: pointer;
+      }
+      td{
+        padding: 10px;
+      }
+    </style>
+</head>
+<body>
+<h2>List of Invoice Detail</h2>
+<br>
+<table>
+    <tr>
+        <th>Invoice Detail Code</th>
+        <th>Invoice Code</th>
+        <th>Product</th>
+        <th>Amount</th>
+        <th>SubTotal</th>
+        <th>IVA (15%)</th>
+        <th>Total</th>
+    </tr>
+    <tr th:each="id: ${invoiceDetails}">
+        <th th:text="${id.invoiceDetailId}"></th>
+        <th th:text="${id.invoiceId}"></th>
+        <th th:text="${id.product}"></th>
+        <th th:text="${id.amount}"></th>
+        <th th:text="${id.subtotal}"></th>
+        <th th:text="${id.iva}"></th>
+        <th th:text="${id.total}"></th>
+
+    </tr>
+</table>
+</body>
+</html>
