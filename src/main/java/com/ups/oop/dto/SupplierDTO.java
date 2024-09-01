@@ -21,5 +21,4 @@ public class SupplierDTO {
     private String address;
     private String phoneNumber;
     private String email;
-   // private List<String> products;
 }

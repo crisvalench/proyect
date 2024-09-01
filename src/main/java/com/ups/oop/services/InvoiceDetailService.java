@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class InvoiceDetailService {
 
@@ -23,14 +24,13 @@ public class InvoiceDetailService {
 
         for(InvoiceDetail id : invoiceDetailIterable){
             InvoiceDetailsDTO invoiceDetailsDTO = new InvoiceDetailsDTO();
+            invoiceDetailsDTO.setInvoiceDetailId(id.getInvoiceDetailId());
             invoiceDetailsDTO.setInvoiceId(id.getInvoice().getInvoiceId());
             invoiceDetailsDTO.setProduct(id.getProduct().getNameProduct());
             invoiceDetailsDTO.setAmount(id.getAmount());
             invoiceDetailsDTO.setSubtotal(String.valueOf(id.getSubtotal()));
             invoiceDetailsDTO.setIva(String.valueOf(id.getIva()));
             invoiceDetailsDTO.setTotal(String.valueOf(id.getTotal()));
-
-
             invoiceDetailsList.add(invoiceDetailsDTO);
         }
         return invoiceDetailsList;

@@ -11,6 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+
 public class PayMethodDTO {
     private String idPayMethod;
     private String payMethodName; //CASH, CREDIT CARD, TRANSFER, DEBIT CARD

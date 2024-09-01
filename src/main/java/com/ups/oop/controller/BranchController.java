@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class BranchController {
-
     private final BranchService branchService;
 
     public BranchController(BranchService branchService) {
