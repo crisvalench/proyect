@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Branches List</title>
+    <title>Cities List</title>
     <style>
         h2{
         text-transform: uppercase;
         font-size: 36px;
         text-align: center;
         margin: 20px;
-        color: #dc3545;
+        color: #6f42c1;
     }
 
     table , th, td {
@@ -28,8 +28,8 @@
     }
 
     tr:first-child {
-        background-color: #dc35457a;
-        color: #ffffff;
+        background-color: #b57edc;
+        color: #ffff;
     }
 
     td{
@@ -61,26 +61,30 @@
     </style>
 </head>
 <body>
-<h2>List of Branches</h2>
+<h2>List of Cities</h2>
 <br>
 <table>
     <tr>
-        <th>Branch Code</th>
+        <th>Client Code</th>
         <th>Registration Date</th>
+        <th>ID Card</th>
         <th>Name</th>
+        <th>LastName</th>
         <th>City</th>
         <th>Address</th>
         <th>Phone Number</th>
         <th>Email</th>
     </tr>
-    <tr th:each="br: ${branches}">
-        <td th:text="${br.idBranch}"></td>
-        <td th:text="${br.registrationDate}"></td>
-        <td th:text="${br.nameBranch}"></td>
-        <td th:text="${br.city}"></td>
-        <td th:text="${br.address}"></td>
-        <td th:text="${br.phoneNumber}"></td>
-        <td th:text="${br.email}"></td>
+    <tr th:each="cl: ${clients}">
+        <td th:text="${cl.idClient}"></td>
+        <td th:text="${cl.registrationDate}"></td>
+        <td th:text="${cl.ciClient}"></td>
+        <td th:text="${cl.nameClient}"></td>
+        <td th:text="${cl.lastNameClient}"></td>
+        <td th:text="${cl.city}"></td>
+        <td th:text="${cl.address}"></td>
+        <td th:text="${cl.phoneNumber}"></td>
+        <td th:text="${cl.email}"></td>
     </tr>
 </table>
 <div class="footer">

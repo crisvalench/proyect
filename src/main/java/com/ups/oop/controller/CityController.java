@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CityController {
-
     private final CityService cityService;
 
     public CityController(CityService cityService) {

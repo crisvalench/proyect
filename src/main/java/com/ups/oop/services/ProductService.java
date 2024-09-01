@@ -27,20 +27,14 @@ public class ProductService {
     private List<ProductDTO> productList = new ArrayList<>();
 
     public ResponseEntity createProduct(ProductDTO productDTO){
-
         String productId = productDTO.getIdProduct();
-
         Optional<Product> productOptional = productRepository.findByIdProduct(productId);
 
         if(productOptional.isPresent()){
-
             String errorMessage = "Product with id " + productId + " already exists.";
-
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
-
         }else{
             Optional<Supplier> supplierOptional = supplierRepository.findByNameSupplier(productDTO.getSupplier());
-
             if(supplierOptional.isPresent()){
             Product product = new Product();
             product.setIdProduct(productId);
@@ -48,54 +42,52 @@ public class ProductService {
             product.setSupplier(supplierOptional.get());
             product.setDetailProduct(productDTO.getDetailProduct());
             product.setPrice(Double.parseDouble(productDTO.getPrice()));
-
             return ResponseEntity.status(HttpStatus.OK).body(product);
-
             }else{
-
                 String errorMessage = "Supplier don't exists.";
-
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
             }
         }
     }
 
     public ResponseEntity getAllProducts() {
-
         Iterable<Product> productIterable = productRepository.findAll();
-
         List<ProductDTO> productList = new ArrayList<>();
 
         for (Product p : productIterable) {
-
             ProductDTO product = new ProductDTO(p.getIdProduct(),p.getNameProduct(),
                     p.getSupplier().getNameSupplier(),p.getDetailProduct(),String.valueOf(p.getPrice()));
-
             productList.add(product);
         }
 
         if (productList.isEmpty()) {
-
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Products List not found");
-
         }
-
         return ResponseEntity.status(HttpStatus.OK).body(productList);
     }
 
-    public ResponseEntity getProductById(String idProduct){
+    //TemplateController
+    public List<ProductDTO> getProducts(){
+        Iterable<Product> productIterable = productRepository.findAll();
+        List<ProductDTO> productList = new ArrayList<>();
+        for (Product p : productIterable) {
+            ProductDTO product = new ProductDTO(p.getIdProduct(),p.getNameProduct(),
+                    p.getSupplier().getNameSupplier(),p.getDetailProduct(),String.valueOf(p.getPrice()));
+            productList.add(product);
+        }
+        return productList;
+    }
 
+    public ResponseEntity getProductById(String idProduct){
         Optional<Product> productOptional = productRepository.findByIdProduct(idProduct);
 
         if(productOptional.isPresent()){
-
             Product productFound = productOptional.get();
 
             ProductDTO product = new ProductDTO(productFound.getIdProduct(),productFound.getNameProduct(),
-                    productFound.getSupplier().getNameSupplier(),productFound.getDetailProduct(),String.valueOf(productFound.getPrice()));
-
+                    productFound.getSupplier().getNameSupplier(),productFound.getDetailProduct(),
+                    String.valueOf(productFound.getPrice()));
             return ResponseEntity.status(HttpStatus.OK).body(product);
-
         }else{
             String errorMessage = "Product with id " + idProduct + " not found.";
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
@@ -103,13 +95,10 @@ public class ProductService {
     }
 
     public ResponseEntity updateProduct(ProductDTO productDTO){
-
         String productId = productDTO.getIdProduct();
-
         Optional<Product> productOptional = productRepository.findByIdProduct(productId);
 
         if(productOptional.isPresent()){
-
             Optional<Supplier> supplierOptional = supplierRepository.findByNameSupplier(productDTO.getSupplier());
 
             if(supplierOptional.isPresent()){
@@ -119,39 +108,26 @@ public class ProductService {
                 product.setSupplier(supplierOptional.get());
                 product.setDetailProduct(productDTO.getDetailProduct());
                 product.setPrice(Double.parseDouble(productDTO.getPrice()));
-
                 return ResponseEntity.status(HttpStatus.OK).body(product);
-
             }else{
-
                 String errorMessage = "Supplier don't exists.";
-
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorMessage);
             }
-
         }else{
             String errorMessage = "Product with id " + productId + " already exists.";
-
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
         }
     }
 
     public ResponseEntity deleteProductById(String id){
-
         String message = "Product with id " + id;
-
         Optional<Product> productOptional = productRepository.findByIdProduct(id);
 
         if(productOptional.isPresent()){
-
             productRepository.delete((productOptional.get()));
-
             return ResponseEntity.status(HttpStatus.OK).body(message + " removed successufuly");
-
         }else{
-
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message + " not found");
-
         }
     }
 

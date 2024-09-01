@@ -25,17 +25,12 @@ public class CityService {
     private List<CityDTO> cityDTOList = new ArrayList<>();
 
     public ResponseEntity createCity(CityDTO cityDTO) {
-
         String cityId = cityDTO.getCityId();
-
         Optional<City> cityOptional = cityRepository.findByCityId(cityId);
 
         if (cityOptional.isPresent()) {
-
             String errorMessage = "City with id " + cityId + " already exists.";
-
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorMessage);
-
         } else {
             City city = new City();
             city.setCityId(cityId);
@@ -47,9 +42,7 @@ public class CityService {
     }
 
     public ResponseEntity getAllCities(){
-
         Iterable<City> cityIterable = cityRepository.findAll();
-
         List<CityDTO> citiesList = new ArrayList<>();
 
         for (City c : cityIterable) {
@@ -60,6 +53,17 @@ public class CityService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cities List not found");
         }
         return ResponseEntity.status(HttpStatus.OK).body(citiesList);
+    }
+
+    //TemplateController
+    public List<CityDTO> getCities(){
+        Iterable<City> cityIterable = cityRepository.findAll();
+        List<CityDTO> cityList = new ArrayList<>();
+        for (City c : cityIterable) {
+            CityDTO city = new CityDTO(c.getCityId(), c.getRegistrationDate().toString(),c.getNameCity());
+            cityList.add(city);
+        }
+        return cityList;
     }
 
     public ResponseEntity getCityById(String cityId){
@@ -77,44 +81,29 @@ public class CityService {
     }
 
     public ResponseEntity updateCity(CityDTO cityDTO){
-
         String idCity = cityDTO.getCityId();
-
         Optional<City> cityOptional = cityRepository.findByCityId(idCity);
 
         if(cityOptional.isPresent()){
-
             City city = cityOptional.get();
             city.setCityId(idCity);
             city.setNameCity(cityDTO.getNameCity());
-
             cityRepository.save(city);
-
             return ResponseEntity.status(HttpStatus.OK).body(cityDTO);
-
         }else{
-
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("City with id " + idCity + " doesn't exits");
-
         }
     }
 
     public ResponseEntity deleteCityById(String id){
-
         String message = "City with id " + id;
-
         Optional<City> cityOptional = cityRepository.findByCityId(id);
 
         if(cityOptional.isPresent()){
-
             cityRepository.delete((cityOptional.get()));
-
             return ResponseEntity.status(HttpStatus.OK).body(message + " removed successufuly");
-
         }else{
-
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message + " not found");
-
         }
     }
 }

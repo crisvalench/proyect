@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PayMethodController {
-
     private final PayMethodService payMethodService;
 
     public PayMethodController(PayMethodService payMethodService) {

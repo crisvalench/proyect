@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class InvoiceService {
     private final InvoiceRepository invoiceRepository;
@@ -21,6 +22,7 @@ public class InvoiceService {
         List<InvoiceDTO> invoiceList = new ArrayList<>();
         for (Invoice iv : invoiceIterable){
             InvoiceDTO invoiceDTO = new InvoiceDTO();
+            invoiceDTO.setInvoiceId(iv.getInvoiceId());
             invoiceDTO.setIssueDate(iv.getIssueDate());
             invoiceDTO.setSupplier(iv.getSupplier().getNameSupplier());
             invoiceDTO.setClient(iv.getClient().getNameClient() + " " + iv.getClient().getLastNameClient());

@@ -1,13 +1,14 @@
 package com.ups.oop.controller;
 
-import com.ups.oop.repository.BranchRepository;
-import com.ups.oop.repository.CityRepository;
-import com.ups.oop.repository.ClientRepository;
-import com.ups.oop.repository.PayMethodRepository;
-import com.ups.oop.repository.ProductRepository;
-import com.ups.oop.repository.SellerRepository;
-import com.ups.oop.repository.SupplierRepository;
-import com.ups.oop.services.*;
+import com.ups.oop.services.BranchService;
+import com.ups.oop.services.CityService;
+import com.ups.oop.services.ClientService;
+import com.ups.oop.services.InvoiceDetailService;
+import com.ups.oop.services.InvoiceService;
+import com.ups.oop.services.PayMethodService;
+import com.ups.oop.services.ProductService;
+import com.ups.oop.services.SellerService;
+import com.ups.oop.services.SupplierService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,6 +45,18 @@ public class TemplateController {
         return "branch/list";
     }
 
+    @GetMapping("/cities")
+    public String getCities(Model model){
+        model.addAttribute("cities",  cityService.getCities());
+        return "city/list";
+    }
+
+    @GetMapping("/clients")
+    public String getClients(Model model){
+        model.addAttribute("clients",  clientService.getClients());
+        return "client/list";
+    }
+
     @GetMapping("/invoices-details")
     public String getInvoiceDetails(Model model){
         model.addAttribute("invoiceDetails",  invoiceDetailService.getInvoiceDetails());
@@ -56,4 +69,27 @@ public class TemplateController {
         return "invoice/list";
     }
 
+    @GetMapping("/pay-methods")
+    public String getPayMethod(Model model){
+        model.addAttribute("payMethod",  payMethodService.getPayMethods());
+        return "payMethod/list";
+    }
+
+    @GetMapping("/products")
+    public String getProducts(Model model){
+        model.addAttribute("product",  productService.getProducts());
+        return "product/list";
+    }
+
+    @GetMapping("/sellers")
+    public String getSellers(Model model){
+        model.addAttribute("seller",  sellerService.getSellers());
+        return "seller/list";
+    }
+
+    @GetMapping("/suppliers")
+    public String getSuppliers(Model model){
+        model.addAttribute("supplier",  supplierService.getSuppliers());
+        return "supplier/list";
+    }
 }

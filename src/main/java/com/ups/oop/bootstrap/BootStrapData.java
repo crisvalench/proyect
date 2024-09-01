@@ -55,23 +55,23 @@ public class BootStrapData implements CommandLineRunner {
    //createPayMethod
         PayMethod payMethod1 = new PayMethod();
         payMethod1.setIdPayMethod("PM001");
-        payMethod1.setPayMethodName("EFECTIVO");
-        payMethod1.setDetail("Pago en efectivo");
+        payMethod1.setPayMethodName("Cash");
+        payMethod1.setDetail("Cash payment");
 
         PayMethod payMethod2 = new PayMethod();
         payMethod2.setIdPayMethod("PM002");
-        payMethod2.setPayMethodName("TARJETA DE CRÉDITO");
-        payMethod2.setDetail("Pago con tarjeta de crédito");
+        payMethod2.setPayMethodName("Credit Card");
+        payMethod2.setDetail("Payment by credit card");
 
         PayMethod payMethod3 = new PayMethod();
         payMethod3.setIdPayMethod("PM003");
-        payMethod3.setPayMethodName("TRANSFERENCIA");
-        payMethod3.setDetail("Pago por transferencia bancaria");
+        payMethod3.setPayMethodName("Transfer");
+        payMethod3.setDetail("Payment by bank transfer");
 
         PayMethod payMethod4 = new PayMethod();
         payMethod4.setIdPayMethod("PM004");
-        payMethod4.setPayMethodName("TARJETA DE DÉBITO");
-        payMethod4.setDetail("Pago con tarjeta de débito");
+        payMethod4.setPayMethodName("Debit Card");
+        payMethod4.setDetail("Payment by debit card");
 
         payMethodRepository.save(payMethod1);
         payMethodRepository.save(payMethod2);
@@ -359,9 +359,9 @@ public class BootStrapData implements CommandLineRunner {
     //Product1
         Product product1 = new Product();
         product1.setIdProduct("P001");
-        product1.setNameProduct("Producto A");
+        product1.setNameProduct("Product A");
         product1.setSupplier(supplier1);
-        product1.setDetailProduct("Descripción del Producto A");
+        product1.setDetailProduct("Product Description A");
         product1.setPrice(11.00);
         productRepository.save(product1);
 
@@ -371,9 +371,9 @@ public class BootStrapData implements CommandLineRunner {
     //Product2
         Product product2 = new Product();
         product2.setIdProduct("P002");
-        product2.setNameProduct("Producto B");
+        product2.setNameProduct("Product B");
         product2.setSupplier(supplier4);
-        product2.setDetailProduct("Descripción del Producto B");
+        product2.setDetailProduct("Product Description B");
         product2.setPrice(15.00);
         productRepository.save(product2);
 
@@ -383,9 +383,9 @@ public class BootStrapData implements CommandLineRunner {
     //Product3
         Product product3 = new Product();
         product3.setIdProduct("P003");
-        product3.setNameProduct("Producto C");
+        product3.setNameProduct("Product C");
         product3.setSupplier(supplier2);
-        product3.setDetailProduct("Descripción del Producto C");
+        product3.setDetailProduct("Product Description C");
         product3.setPrice(8.00);
         productRepository.save(product3);
 
@@ -395,9 +395,9 @@ public class BootStrapData implements CommandLineRunner {
     //Product4
         Product product4 = new Product();
         product4.setIdProduct("P004");
-        product4.setNameProduct("Producto D");
+        product4.setNameProduct("Product D");
         product4.setSupplier(supplier3);
-        product4.setDetailProduct("Descripción del Producto D");
+        product4.setDetailProduct("Product Description D");
         product4.setPrice(12.00);
         productRepository.save(product4);
 
@@ -408,9 +408,9 @@ public class BootStrapData implements CommandLineRunner {
     //Product5
         Product product5 = new Product();
         product5.setIdProduct("P005");
-        product5.setNameProduct("Producto E");
+        product5.setNameProduct("Product E");
         product5.setSupplier(supplier1);
-        product5.setDetailProduct("Descripción del Producto E");
+        product5.setDetailProduct("Product Description E");
         product5.setPrice(10.00);
         productRepository.save(product5);
 

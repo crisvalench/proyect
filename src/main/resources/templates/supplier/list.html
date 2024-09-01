@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Branches List</title>
+    <title>Suppliers List</title>
     <style>
         h2{
         text-transform: uppercase;
         font-size: 36px;
         text-align: center;
         margin: 20px;
-        color: #dc3545;
+        color: #d4af37;
     }
 
     table , th, td {
@@ -28,8 +28,8 @@
     }
 
     tr:first-child {
-        background-color: #dc35457a;
-        color: #ffffff;
+        background-color:#2e8b57;
+        color: #ffff;
     }
 
     td{
@@ -61,26 +61,26 @@
     </style>
 </head>
 <body>
-<h2>List of Branches</h2>
+<h2>List of Suppliers</h2>
 <br>
 <table>
     <tr>
-        <th>Branch Code</th>
-        <th>Registration Date</th>
+        <th>Supplier Code</th>
+        <th>EIN Card</th>
         <th>Name</th>
         <th>City</th>
         <th>Address</th>
         <th>Phone Number</th>
         <th>Email</th>
     </tr>
-    <tr th:each="br: ${branches}">
-        <td th:text="${br.idBranch}"></td>
-        <td th:text="${br.registrationDate}"></td>
-        <td th:text="${br.nameBranch}"></td>
-        <td th:text="${br.city}"></td>
-        <td th:text="${br.address}"></td>
-        <td th:text="${br.phoneNumber}"></td>
-        <td th:text="${br.email}"></td>
+    <tr th:each="sp: ${supplier}">
+        <td th:text="${sp.idSupplier}"></td>
+        <td th:text="${sp.rucSupplier}"></td>
+        <td th:text="${sp.nameSupplier}"></td>
+        <td th:text="${sp.city}"></td>
+        <td th:text="${sp.address}"></td>
+        <td th:text="${sp.phoneNumber}"></td>
+        <td th:text="${sp.email}"></td>
     </tr>
 </table>
 <div class="footer">

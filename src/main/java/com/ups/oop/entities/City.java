@@ -1,9 +1,9 @@
 package com.ups.oop.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -32,13 +32,6 @@ public class City extends BaseEntity {
     @OneToMany(mappedBy = "city")
     private List<Supplier> suppliers = new ArrayList<>();
 
-    //@ManyToMany
-    //@JoinTable(
-            //name = "city_supplier",
-            //joinColumns = @JoinColumn(name = "city_id"),
-            //inverseJoinColumns = @JoinColumn(name = "supplier_id")
-    //)
-    //private List<Supplier> suppliers = new ArrayList<>();
 
     public City(){ super();}
 
@@ -48,6 +41,4 @@ public class City extends BaseEntity {
         this.cityId = cityId;
         this.nameCity = nameCity;
     }
-
-
 }

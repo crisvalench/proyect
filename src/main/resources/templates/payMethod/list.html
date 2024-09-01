@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Branches List</title>
+    <title>PayMethods List</title>
     <style>
         h2{
         text-transform: uppercase;
         font-size: 36px;
         text-align: center;
         margin: 20px;
-        color: #dc3545;
+        color: #e83e8c;
     }
 
     table , th, td {
@@ -28,8 +28,8 @@
     }
 
     tr:first-child {
-        background-color: #dc35457a;
-        color: #ffffff;
+        background-color: #e83e8c7a;
+        color: #ffff;
     }
 
     td{
@@ -61,26 +61,19 @@
     </style>
 </head>
 <body>
-<h2>List of Branches</h2>
+<h2>List of Payment Methods</h2>
 <br>
 <table>
     <tr>
-        <th>Branch Code</th>
-        <th>Registration Date</th>
+        <th>PayMethod Code</th>
         <th>Name</th>
-        <th>City</th>
-        <th>Address</th>
-        <th>Phone Number</th>
-        <th>Email</th>
+        <th>Detail</th>
+
     </tr>
-    <tr th:each="br: ${branches}">
-        <td th:text="${br.idBranch}"></td>
-        <td th:text="${br.registrationDate}"></td>
-        <td th:text="${br.nameBranch}"></td>
-        <td th:text="${br.city}"></td>
-        <td th:text="${br.address}"></td>
-        <td th:text="${br.phoneNumber}"></td>
-        <td th:text="${br.email}"></td>
+    <tr th:each="pm: ${payMethod}">
+        <td th:text="${pm.idPayMethod}"></td>
+        <td th:text="${pm.payMethodName}"></td>
+        <td th:text="${pm.detail}"></td>
     </tr>
 </table>
 <div class="footer">
