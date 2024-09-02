@@ -32,8 +32,8 @@ public class Invoice {
     private double total;
 
     @ManyToOne
-    @JoinColumn(name = "supplier_id", nullable = true)
-    private Supplier supplier;
+    @JoinColumn(name = "branch_id", nullable = true)
+    private Branch branch;
 
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = true)

@@ -90,7 +90,7 @@ public class BootStrapData implements CommandLineRunner {
         Branch branch1 = new Branch();
         branch1.setIdBranch("B001");
         branch1.setRegistrationDate(new Date());
-        branch1.setNameBranch("Sucursal Quito Centro");
+        branch1.setNameBranch("Branch Quito Centro");
         branch1.setAddress("Av. Amazonas 123");
         branch1.setPhoneNumber("0991234567");
         branch1.setEmail("quito@branch.com");
@@ -111,7 +111,7 @@ public class BootStrapData implements CommandLineRunner {
         Branch branch2 = new Branch();
         branch2.setIdBranch("B002");
         branch2.setRegistrationDate(new Date());
-        branch2.setNameBranch("Sucursal Guayaquil Norte");
+        branch2.setNameBranch("Branch Guayaquil Norte");
         branch2.setAddress("Calle 9 de Octubre 456");
         branch2.setPhoneNumber("0992345678");
         branch2.setEmail("guayaquil@branch.com");
@@ -131,7 +131,7 @@ public class BootStrapData implements CommandLineRunner {
         //Branch3
         Branch branch3 = new Branch();
         branch3.setIdBranch("B003");
-        branch3.setNameBranch("Sucursal Cuenca Sur");
+        branch3.setNameBranch("Branch Cuenca Sur");
         branch3.setAddress("Av. de las Américas 789");
         branch3.setPhoneNumber("0993456789");
         branch3.setEmail("cuenca@branch.com");
@@ -152,7 +152,7 @@ public class BootStrapData implements CommandLineRunner {
         //Branch
         Branch branch4 = new Branch();
         branch4.setIdBranch("B004");
-        branch4.setNameBranch("Sucursal Manta Oeste");
+        branch4.setNameBranch("Branch Manta Oeste");
         branch4.setAddress("Calle 7 de Agosto 321");
         branch4.setPhoneNumber("0994567890");
         branch4.setEmail("manta@branch.com");
@@ -421,7 +421,7 @@ public class BootStrapData implements CommandLineRunner {
         Invoice invoice1 = new Invoice();
         invoice1.setInvoiceId("INV001");
         invoice1.setIssueDate("2024-08-01");
-        invoice1.setSupplier(supplier1);
+        invoice1.setBranch(branch1);
         invoice1.setClient(client1);
         invoice1.setAmountTotal(4);
         invoice1.setSubTotal(44.00);
@@ -430,7 +430,7 @@ public class BootStrapData implements CommandLineRunner {
         invoice1.setPayMethod(payMethod2);
         invoiceRepository.save(invoice1);
 
-        supplier1.getInvoices().add(invoice1);
+        branch1.getInvoices().add(invoice1);
         client1.getInvoices().add(invoice1);
         seller3.getInvoices().add(invoice1);
         payMethod2.getInvoices().add(invoice1);
@@ -439,7 +439,7 @@ public class BootStrapData implements CommandLineRunner {
         Invoice invoice2 = new Invoice();
         invoice2.setInvoiceId("INV002");
         invoice2.setIssueDate("2024-08-02");
-        invoice2.setSupplier(supplier3);
+        invoice2.setBranch(branch3);
         invoice2.setClient(client3);
         invoice2.setAmountTotal(5);
         invoice2.setSubTotal(46.00);
@@ -448,7 +448,7 @@ public class BootStrapData implements CommandLineRunner {
         invoice2.setPayMethod(payMethod1);
         invoiceRepository.save(invoice2);
 
-        supplier3.getInvoices().add(invoice2);
+        branch3.getInvoices().add(invoice2);
         client3.getInvoices().add(invoice2);
         seller1.getInvoices().add(invoice2);
         payMethod1.getInvoices().add(invoice2);

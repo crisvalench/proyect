@@ -38,8 +38,6 @@ public class Supplier extends BaseEntity {
     @OneToMany(mappedBy = "supplier")
     private List<Product> products = new ArrayList<>();
 
-    @OneToMany(mappedBy = "supplier")
-    private List<Invoice> invoices = new ArrayList<>();
 
     public Supplier(){ super();}
 

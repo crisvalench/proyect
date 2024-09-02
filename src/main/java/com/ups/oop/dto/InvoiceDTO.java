@@ -16,7 +16,7 @@ import lombok.ToString;
 public class InvoiceDTO {
     private String invoiceId;
     private String issueDate;
-    private String supplier;
+    private String branch;
     private String client;
     private String amountTotal;
     private String subTotal;

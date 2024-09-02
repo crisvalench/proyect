@@ -3,10 +3,13 @@ package com.ups.oop.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,6 +23,9 @@ public class Branch extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "city", nullable = true)
     private City city;
+
+    @OneToMany(mappedBy = "branch")
+    private List<Invoice> invoices = new ArrayList<>();
 
     public Branch(){ super();}
 

@@ -67,7 +67,7 @@
     <tr>
         <th>Invoice Code</th>
         <th>Isuue Date</th>
-        <th>Supplier</th>
+        <th>Branch</th>
         <th>Client</th>
         <th>Amount Total</th>
         <th>SubTotal</th>
@@ -78,7 +78,7 @@
     <tr th:each="in: ${invoice}">
         <td th:text="${in.invoiceId}"></td>
         <td th:text="${in.issueDate}"></td>
-        <td th:text="${in.supplier}"></td>
+        <td th:text="${in.branch}"></td>
         <td th:text="${in.client}"></td>
         <td th:text="${in.amountTotal}"></td>
         <td th:text="${in.subTotal}"></td>

@@ -24,7 +24,7 @@ public class InvoiceService {
             InvoiceDTO invoiceDTO = new InvoiceDTO();
             invoiceDTO.setInvoiceId(iv.getInvoiceId());
             invoiceDTO.setIssueDate(iv.getIssueDate());
-            invoiceDTO.setSupplier(iv.getSupplier().getNameSupplier());
+            invoiceDTO.setBranch(iv.getBranch().getNameBranch());
             invoiceDTO.setClient(iv.getClient().getNameClient() + " " + iv.getClient().getLastNameClient());
             invoiceDTO.setAmountTotal(iv.getAmountTotal().toString());
             invoiceDTO.setSubTotal(String.valueOf(iv.getSubTotal()));
