@@ -15,6 +15,7 @@ import java.util.List;
 
 public class SupplierDTO {
     private String idSupplier;
+    private String registrationDate;
     private String rucSupplier;
     private String nameSupplier;
     private String city;

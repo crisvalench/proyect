@@ -39,7 +39,7 @@ public class BranchService {
             if(cityOptional.isPresent()){
                     Branch branch = new Branch();
                     branch.setIdBranch(idBranch);
-                    branch.setRegistrationDate(new Date(branchDTO.getRegistrationDate()));
+                    branch.setRegistrationDate(new Date());
                     branch.setNameBranch(branchDTO.getNameBranch());
                     branch.setCity(cityOptional.get());
                     branch.setAddress(branchDTO.getAddress());

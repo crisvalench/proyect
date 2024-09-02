@@ -38,7 +38,7 @@ public class SellerService {
             if (cityOptional.isPresent()) {
                 Seller seller = new Seller();
                 seller.setIdSeller(sellerId);
-                seller.setRegistrationDate(new Date(sellerDTO.getRegistrationDate()));
+                seller.setRegistrationDate(new Date());
                 seller.setCiSeller((sellerDTO.getCiSeller()));
                 seller.setNameSeller(sellerDTO.getNameSeller());
                 seller.setLastNameSeller(sellerDTO.getLastNameSeller());

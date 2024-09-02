@@ -34,7 +34,7 @@ public class CityService {
         } else {
             City city = new City();
             city.setCityId(cityId);
-            city.setRegistrationDate(new Date(cityDTO.getRegistrationDate()));
+            city.setRegistrationDate(new Date());
             city.setNameCity(cityDTO.getNameCity());
             cityRepository.save(city);
             return ResponseEntity.status(HttpStatus.OK).body(city);

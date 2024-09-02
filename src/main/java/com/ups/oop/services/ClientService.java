@@ -39,7 +39,7 @@ public class ClientService {
             if (cityOptional.isPresent()) {
                 Client client = new Client();
                 client.setIdClient(clientId);
-                client.setRegistrationDate(new Date(clientDTO.getRegistrationDate()));
+                client.setRegistrationDate(new Date());
                 client.setCiClient((clientDTO.getCiClient()));
                 client.setNameClient(clientDTO.getNameClient());
                 client.setLastNameClient(clientDTO.getLastNameClient());

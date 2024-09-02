@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public class SupplierService {
             if (cityOptional.isPresent()) {
                 Supplier supplier = new Supplier();
                 supplier.setIdSupplier(supplierId);
+                supplier.setRegistrationDate(new Date());
                 supplier.setRucSupplier(supplierDTO.getRucSupplier());
                 supplier.setNameSupplier(supplierDTO.getNameSupplier());
                 supplier.setCity(cityOptional.get());
@@ -58,7 +60,7 @@ public class SupplierService {
 
         for (Supplier sp : supplierIterable) {
             SupplierDTO supplier = new SupplierDTO(
-                    sp.getIdSupplier(),sp.getRucSupplier(),sp.getNameSupplier(),sp.getCity().getNameCity(),sp.getAddress(),
+                    sp.getIdSupplier(),sp.getRegistrationDate().toString(),sp.getRucSupplier(),sp.getNameSupplier(),sp.getCity().getNameCity(),sp.getAddress(),
                     sp.getPhoneNumber(),sp.getEmail());
             supplierList.add(supplier);
         }
@@ -72,7 +74,7 @@ public class SupplierService {
         Iterable<Supplier> supplierIterable = supplierRepository.findAll();
         List<SupplierDTO> supplierList = new ArrayList<>();
         for (Supplier sp : supplierIterable) {
-            SupplierDTO supplier= new SupplierDTO(sp.getIdSupplier(),sp.getRucSupplier(),sp.getNameSupplier(),sp.getCity().getNameCity(),sp.getAddress(),
+            SupplierDTO supplier= new SupplierDTO(sp.getIdSupplier(),sp.getRegistrationDate().toString(),sp.getRucSupplier(),sp.getNameSupplier(),sp.getCity().getNameCity(),sp.getAddress(),
                     sp.getPhoneNumber(),sp.getEmail());
             supplierList.add(supplier);
         }
@@ -85,7 +87,7 @@ public class SupplierService {
         if(supplierOptional.isPresent()){
             Supplier supplierFound = supplierOptional.get();
             SupplierDTO supplier = new SupplierDTO(
-                    supplierFound.getIdSupplier(), supplierFound.getRucSupplier(),supplierFound.getNameSupplier(),
+                    supplierFound.getIdSupplier(), supplierFound.getRegistrationDate().toString(),supplierFound.getRucSupplier(),supplierFound.getNameSupplier(),
                     supplierFound.getCity().getNameCity(),supplierFound.getAddress(),supplierFound.getPhoneNumber(),supplierFound.getEmail());
             return ResponseEntity.status(HttpStatus.OK).body(supplier);
         }else{
@@ -103,6 +105,7 @@ public class SupplierService {
             if (cityOptional.isPresent()) {
                 Supplier supplier = new Supplier();
                 supplier.setIdSupplier(supplierId);
+                supplier.setRegistrationDate(new Date());
                 supplier.setRucSupplier(supplierDTO.getRucSupplier());
                 supplier.setNameSupplier(supplierDTO.getNameSupplier());
                 supplier.setCity(cityOptional.get());
